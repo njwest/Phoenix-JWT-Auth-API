@@ -16,7 +16,7 @@ Our API routes are configured in `lib/myApi_web/router.ex`.
 
 By default, they are:
 
-### POST: Sign up a User
+### `POST`: Sign up a User
 
 `POST` a JSON `"user"` to `/api/v1/sign_up`:
 ```
@@ -31,7 +31,7 @@ By default, they are:
 
 If the client sign up `POST` request is successful, the server will return a JSON Web Token, as `{ "jwt": "some JSON web token here"}`
 
-### POST: Sign in a User
+### `POST`: Sign in a User
 
 `POST` a valid email and password JSON  to `/api/v1/sign_in`:
 ```
@@ -43,7 +43,7 @@ If the client sign up `POST` request is successful, the server will return a JSO
 
 If the client `POST` sign in request is successful, the server will return a JSON Web Token, as `{ "jwt": "some JSON web token here"}`.
 
-### GET: User Data
+### `GET`: User Data
 
 The subject of our JWT is its correlating user's `user_id`.
 
