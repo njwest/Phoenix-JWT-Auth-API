@@ -1,19 +1,62 @@
-# MyApi
+# Elixir on Phoenix 1.3 JSON Web Token Authentication API
+
+This is a demo Phoenix Elixir JWT REST API app, using Ueberauth's [Guardian](https://github.com/ueberauth/guardian) package for JWT authentication and riverrun's [Comeonin](https://github.com/riverrun/comeonin)/[bcrypt_elixir](https://github.com/riverrun/bcrypt_elixir) packages for password hashing.
+
+##### Note: replace the Guardian config secret with your own, as the secrets used in this demo app are public.
 
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Start Phoenix endpoint with `mix phx.server`
+  * Start Phoenix server with `mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## API Endpoints:
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+Our API routes are configured in `lib/myApi_web/router.ex`.
 
-## Learn more
+By default, they are:
 
-  * Official website: http://www.phoenixframework.org/
+### POST: Sign up a User
+
+`POST` a JSON `"user"` to `/api/v1/sign_up`:
+```
+{
+  "user": {
+    "email": "foobar@email.com",
+    "password": "some_password",
+    "password": "some_password"
+  }
+}
+```
+
+If the client sign up `POST` request is successful, the server will return a JSON Web Token, as `{ "jwt": "some JSON web token here"}`
+
+### POST: Sign in a User
+
+`POST` a valid email and password JSON  to `/api/v1/sign_in`:
+```
+{
+  "email": "foobar@email.com",
+  "password": "some_password"
+}
+```
+
+If the client `POST` sign in request is successful, the server will return a JSON Web Token, as `{ "jwt": "some JSON web token here"}`.
+
+### GET: User Data
+
+The subject of our JWT is its correlating user's `user_id`.
+
+With the request header `"Authorization": "Bearer " + jwt`, a client can retrieve user data via a `GET` request to `/api/v1/my_user`.
+
+## Learn more about Phoenix
+
   * Guides: http://phoenixframework.org/docs/overview
   * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+## Many thanks!
+
+If you enjoyed this tutorial, consider buying me a coffee :)
+
+My Bitcoin address: 1EoaCpygbLgmeNaKWuba1PMM1Nu9WzRpXm
