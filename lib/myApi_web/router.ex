@@ -1,25 +1,27 @@
 defmodule MyApiWeb.Router do
   use MyApiWeb, :router
+  
+  alias MyApi.Guardian
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  pipeline :api_auth do
-
+  pipeline :jwt_authenticated do
+    plug Guardian.AuthPipeline
   end
 
   scope "/api/v1", MyApiWeb do
     pipe_through :api
 
-    resources "/users", UserController, only: [:create, :show]
+    resources "/users", UserController, only: [:create]
     post "/sign_in", UserController, :sign_in
   end
 
   scope "/api/v1", MyApiWeb do
-    pipe_through [:api, :api_auth]
+    pipe_through [:api, :jwt_authenticated]
 
-    resources "/users", UserController, only: [:update, :show]
+    get "/my_user", UserController, :show
   end
 
 end
