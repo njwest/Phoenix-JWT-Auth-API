@@ -29,9 +29,10 @@ defmodule MyApi.Accounts.User do
   defp put_password_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: pass}}
-      -> put_change(changeset, :password_hash, hashpwsalt(pass))
-    _ ->
-      changeset
+        ->
+          put_change(changeset, :password_hash, hashpwsalt(pass))
+      _ ->
+          changeset
     end
   end
 
