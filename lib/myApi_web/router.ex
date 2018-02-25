@@ -1,6 +1,6 @@
 defmodule MyApiWeb.Router do
   use MyApiWeb, :router
-  
+
   alias MyApi.Guardian
 
   pipeline :api do
@@ -14,7 +14,7 @@ defmodule MyApiWeb.Router do
   scope "/api/v1", MyApiWeb do
     pipe_through :api
 
-    resources "/users", UserController, only: [:create]
+    post "/users", UserController, :create
     post "/sign_in", UserController, :sign_in
   end
 
