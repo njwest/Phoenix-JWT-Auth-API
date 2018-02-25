@@ -6,7 +6,7 @@ defmodule MyApiWeb.Router do
   end
 
   pipeline :api_auth do
-    
+
   end
 
   scope "/api/v1", MyApiWeb do

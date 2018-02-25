@@ -11,7 +11,7 @@ defmodule MyApi.Accounts do
   alias MyApi.Guardian
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
-  def token_signin(email, password) do
+  def token_sign_in(email, password) do
     case email_password_auth(email, password) do
       {:ok, user} ->
         Guardian.encode_and_sign(user)

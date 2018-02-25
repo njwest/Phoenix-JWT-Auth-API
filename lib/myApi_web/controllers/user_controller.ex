@@ -8,6 +8,12 @@ defmodule MyApiWeb.UserController do
 
   action_fallback MyApiWeb.FallbackController
 
+  def sign_in(conn, %{"email" => email, "password" => password}) do
+    with {:ok, token, _claims} <- Accounts.token_sign_in(email, password) do
+      conn |> render("jwt.json", jwt: token)
+    end
+  end
+
   def index(conn, _params) do
     users = Accounts.list_users()
     render(conn, "index.json", users: users)
