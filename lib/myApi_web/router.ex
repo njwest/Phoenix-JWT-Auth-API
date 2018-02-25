@@ -12,8 +12,8 @@ defmodule MyApiWeb.Router do
   scope "/api/v1", MyApiWeb do
     pipe_through :api
 
-    post "/sign_in", UserController, :sign_in
     resources "/users", UserController, only: [:create, :show]
+    post "/sign_in", UserController, :sign_in
   end
 
   scope "/api/v1", MyApiWeb do

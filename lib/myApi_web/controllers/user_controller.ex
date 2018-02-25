@@ -9,8 +9,11 @@ defmodule MyApiWeb.UserController do
   action_fallback MyApiWeb.FallbackController
 
   def sign_in(conn, %{"email" => email, "password" => password}) do
-    with {:ok, token, _claims} <- Accounts.token_sign_in(email, password) do
-      conn |> render("jwt.json", jwt: token)
+    case Accounts.token_sign_in(email, password) do
+      {:ok, token, _claims} ->
+        conn |> render("jwt.json", jwt: token)
+      _ ->
+        {:error, :unauthorized}
     end
   end
 
