@@ -11,7 +11,7 @@ defmodule MyApi.Accounts do
   alias MyApi.Guardian
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
-  def token_authenticate(email, password) do
+  def token_signin(email, password) do
     case email_password_auth(email, password) do
       {:ok, user} ->
         Guardian.encode_and_sign(user)
@@ -21,11 +21,11 @@ defmodule MyApi.Accounts do
   end
 
   defp email_password_auth(email, password) when is_binary(email) and is_binary(password) do
-    with {:ok, user} <- find_by_email(email),
+    with {:ok, user} <- get_by_email(email),
     do: verify_password(password, user)
   end
 
-  defp find_by_email(email) when is_binary(email) do
+  defp get_by_email(email) when is_binary(email) do
     case Repo.get_by(User, email: email) do
       nil ->
         dummy_checkpw()
