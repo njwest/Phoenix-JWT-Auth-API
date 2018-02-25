@@ -17,6 +17,11 @@ config :myApi, MyApiWeb.Endpoint,
   pubsub: [name: MyApi.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+# Guardian config
+config :myApi, MyApi.Guardian,
+       issuer: "myApi",
+       secret_key: "aSfdTO9toyeHzWw4yKF+sjDzu6LDX0FCy+Wa34A0AEYd+zNB9sXu7Sv+Z9REyI2Q"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
