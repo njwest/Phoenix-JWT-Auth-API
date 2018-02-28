@@ -30,12 +30,8 @@ defmodule MyApiWeb.UserController do
   end
 
   def show(conn, _params) do
-    if Guardian.Plug.authenticated?(conn) do
-      user = Guardian.Plug.current_resource(conn)
-      conn |> render("user.json", user: user)
-    else
-      {:error, :unauthenticated}
-    end
+    user = Guardian.Plug.current_resource(conn)
+    conn |> render("user.json", user: user)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
