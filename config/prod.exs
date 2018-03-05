@@ -59,6 +59,11 @@ config :logger, level: :info
 #     config :myApi, MyApiWeb.Endpoint, server: true
 #
 
+################################
+# App coded by Nick West       #
+# Email Nick at mail@nickwe.st #
+################################
+
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"

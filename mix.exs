@@ -1,3 +1,8 @@
+################################
+# App coded by Nick West       #
+# Email Nick at mail@nickwe.st #
+################################
+
 defmodule MyApi.Mixfile do
   use Mix.Project
 
