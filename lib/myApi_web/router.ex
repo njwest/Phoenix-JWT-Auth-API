@@ -21,7 +21,10 @@ defmodule MyApiWeb.Router do
   scope "/api/v1", MyApiWeb do
     pipe_through [:api, :jwt_authenticated]
 
-    get "/my_user", UserController, :show
+    get "/users", UserController, :index
+    get "/users/:id", UserController, :show
+    put "/users/:id", UserController, :update
+    delete "/users/:id", UserController, :delete
   end
 
 end
