@@ -47,9 +47,8 @@ defmodule MyApi.Mixfile do
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.7"},
-      {:comeonin, "~> 4.0"},
-      {:bcrypt_elixir, "~> 1.0"},
-      {:guardian, "~> 1.0"}
+      {:argon2_elixir, "~> 2.0"},
+      {:guardian, "~> 2.0"}
     ]
   end
 
@@ -63,7 +62,7 @@ defmodule MyApi.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end

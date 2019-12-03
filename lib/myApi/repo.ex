@@ -1,5 +1,5 @@
 defmodule MyApi.Repo do
-  use Ecto.Repo, otp_app: :myApi
+  use Ecto.Repo, otp_app: :myApi, adapter: Ecto.Adapters.Postgres
 
   @doc """
   Dynamically loads the repository url from the
